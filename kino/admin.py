@@ -25,6 +25,7 @@ class MovieAdmin(admin.ModelAdmin):
     save_on_top = True
     save_as = True
     list_editable = ('draft',)
+    readonly_fields = ("get_image",)
     fieldsets = (
         (None, {
             "fields": (("title", "tagline"),)
@@ -46,6 +47,11 @@ class MovieAdmin(admin.ModelAdmin):
             "fields": (("url", "draft"),)
         }),
     )
+    def get_image(self, obj):
+        return mark_safe(f'<img src={obj.poster.url} width="150" height="110"')
+
+    get_image.short_description = "Постер"
+
 
 @admin.register(Reviews)
 class ReviewAdmin(admin.ModelAdmin):
@@ -66,7 +72,7 @@ class ActorAdmin(admin.ModelAdmin):
     def get_image(self, obj):
         return mark_safe(f'<img src={obj.image.url} width = "50" height = "60"')
 
-    get_image.short_description = "Изображение"
+    # get_image.short_description = "Изображение"
 
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):

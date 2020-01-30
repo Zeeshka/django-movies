@@ -183,16 +183,10 @@
                 </p>
                 <a href="#formReview" onclick="addReview('{{ review.name }}', '{{ review.id }}')">Ответить</a>
 
-
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
-<script>
-    function addReview(name, id){
-        document.getElementById('contactparent').value = id;
-        document.getElementById('contactcomment').innerText = ${name},
-    }
-</script>
+
 {% endblock movie %}
